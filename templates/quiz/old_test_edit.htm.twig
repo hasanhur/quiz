@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ test.name }} {% endblock %}
+
+{% block body %}
+    {% if test %}
+        <h1>{{ test.name }}</h1>
+        {% for question in test.questions %}
+            <div class="jumbotron">
+                {{ form_start(form, {'class': 'edit-question'}) }}
+                    <h2>{{ form_row(question.body) }}</h2>
+                    <ul class="options">
+                        {% for option in question.options %}
+                            {{ form_row(option.body) }}
+                            {{ form_label(option.correct) }}
+                            {{ form_widget(option.correct) }}
+                        {% endfor %}
+                    </ul>
+                    <button type="button" class="btn btn-primary">Edit</button>
+                {{ form_end(form) }}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Test does not exist!</p>
+    {% endif %}
+    <!--<h2><input class="question-edit" type="text" name="{{ question.id }}" value="{{ question.body }}"></h2>
+    {% for option in question.options %}
+        <p><strong>{{ option.name }})</strong> <input class="question-edit" type="text" name="option_{{ option.name }}" value="{{ option.body }}"></p>
+    {% endfor %}-->
+{% endblock %}
+{% block javascripts %}
+    <script src="/js/main.js"></script>
+{% endblock %}

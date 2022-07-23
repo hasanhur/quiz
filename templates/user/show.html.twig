@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ user.username }}</h1>
+    <table id="user_tests" class="table table-striped">
+        <thead>
+            <tr>
+                <td>Test Name</td>
+                <td>Correct Answers</td>
+                <td>Incorrect Answers</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for userTest in tests %}
+                <tr>
+                    <td>{{ userTest.test.name }}</td>
+                    <td>{{ userTest.test.question|length - userTest.incorrectQuestions|length }}</td>
+                    <td>{{ userTest.incorrectQuestions|length }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container">
+      <div class="row">
+        <div class="col-3">
+            <div class="list-group">
+                <a href="{{ path('admin_subject_add') }}" class="list-group-item list-group-item-action{{ app.request.get('_route') == 'admin_subject_add' ? ' active' }}">Add Subject</a>
+                <a href="{{ path('admin_test_add') }}" class="list-group-item list-group-item-action{{ app.request.get('_route') == 'admin_test_add' ? ' active' }}">Add Test</a>
+                <a href="{{ path('admin_test_list') }}" class="list-group-item list-group-item-action{{ app.request.get('_route') == 'admin_test_list' ? ' active' }}">Tests</a>
+                <a href="{{ path('admin_user_list') }}" class="list-group-item list-group-item-action{{ app.request.get('_route') == 'admin_user_list' ? ' active' }}">Users</a>
+            </div>
+        </div>
+        <div class="col-9">
+            {% block content %}{% endblock %}
+        </div>
+      </div>
+    </div>
+{% endblock %}

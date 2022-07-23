@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ 'Home Page'|title }} {% endblock %}
+
+{% block body %}
+<div class="jumbotron">
+    <h1 class="display-4">Test Yourself{{ app.user ? ' ' ~ app.user.username }}!</h1>
+    <p class="lead">You can take quizzes on this website.</p>
+    <hr class="my-4">
+    <p>Start by exploring subjects.</p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="{{ path('subject_list') }}" role="button">Subjects</a>
+    </p>
+</div>
+{% endblock %}
+{% block javascripts %}
+    <script src="/js/main.js"></script>
+{% endblock %}

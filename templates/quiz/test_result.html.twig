@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ test.name }} {% endblock %}
+
+{% block body %}
+<h1>{{ test.name }}</h1>
+{% for question in test.question %}
+    <div class="question-result{% if question.id in incorrectQuestions or isSubmitted == false %} incorrect-answer{% else %} correct-answer{% endif %}">
+        <h3>{{ question.body }}</h3>
+        {% set correct = 1 %}
+        {% for option in question.options %}
+            <div>
+                {{ option.body }}
+                {% if option.getIsCorrect() %}
+                    <span><i class="fa fa-check" aria-hidden="true"></i></span>
+                {% elseif option.id in incorrectAnswers %}
+                    <span><i class="fa fa-times" aria-hidden="true"></i></span>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% endfor %}
+<table id="result" class="table">
+    <thead>
+        <tr>
+            <th>Total Questions</th>
+            <th>Correct Answers</th>
+            <th>Incorrect Answers</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ test.question|length }}</td>
+            {% if isSubmitted %}
+                <td>{{ test.question|length - incorrectQuestions|length }}</td>
+                <td>{{ incorrectQuestions|length }}</td>
+            {% else %}
+                <td>0</td>
+                <td>{{ test.question|length }}</td>
+            {% endif %}
+        </tr>
+    </tbody>
+</table>
+{% endblock %}
+{% block javascripts %}
+    <script src="/js/main.js"></script>
+{% endblock %}

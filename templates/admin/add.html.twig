@@ -1,0 +1,15 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %} New {{ title }} {% endblock %}
+
+{% block content %}
+    {% if app.request.get('_route') == 'admin_question_add' %}
+        <div class="icon">
+            <i class="fa fa-plus fa-2x add-question" aria-hidden="true"></i>
+            <span class="description-box">Add new option</span>
+        </div>
+    {% endif %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}

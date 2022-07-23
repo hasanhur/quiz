@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Tests {% endblock %}
+
+{% block body %}
+    {% if tests %}
+    <table id="tests" class="table table-striped">
+    <thead>
+        <tr>
+            <th>test Title</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for test in tests %}
+            <tr>
+                <td>{{ test.name }}</td>
+                <td><a href="/test/{{ test.id }}" class="btn btn-dark">Show</a>
+                <a href="/test/edit/{{ test.id }}" class="btn btn-light">Edit</a>
+                <a href="#" class="btn btn-danger delete-subject" data-id="{{ test.id }}">Delete</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    {% else %}
+        <p>No subjects to display</p>
+    {% endif %}
+{% endblock %}
+{% block javascripts %}
+    <script src="/js/main.js"></script>
+{% endblock %}

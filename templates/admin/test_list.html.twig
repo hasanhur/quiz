@@ -1,0 +1,36 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}
+    {% if app.request.get('_route') == 'subject_show' %}
+        {{ subject.name|capitalize}}
+    {% else %}
+        All Tests
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if tests %}
+    <table id="tests" class="table table-striped">
+    <thead>
+        <tr>
+            <th>Test Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for test in tests %}
+            <tr>
+                <td>{{ test.name }}</td>
+                <td><a href="{{ path('test_show', {slug: test.slug}) }}" class="btn btn-dark">Show</a>
+                <a href="{{ path('admin_test_edit', {slug: test.slug}) }}" class="btn btn-light">Edit</a>
+                <a href="{{ path('admin_question_add', {slug: test.slug}) }}" class="btn btn-info">Add Question</a>
+                <a href="#" class="btn btn-danger delete-test" data-id="{{ test.id }}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    {% else %}
+        <p>No tests to display</p>
+    {% endif %}
+{% endblock %}

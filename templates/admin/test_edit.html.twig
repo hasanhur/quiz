@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ test.name }} {% endblock %}
+
+{% block body %}
+    {% if test %}
+        <h1>{{ test.name }}</h1>
+        <div class="jumbotron">
+            {{ form(form) }}
+        </div>
+    {% else %}
+        <p>Test does not exist!</p>
+    {% endif %}
+{% endblock %}
+{% block javascripts %}
+    <script src="/js/main.js"></script>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Subjects {% endblock %}
+
+{% block body %}
+    {% if subjects %}
+    <table id="subjects" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Subject Title</th>
+                <th>Test Count</th>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <th>Actions</th>
+                {% endif %}
+                {% if app.request.get('_route') starts with 'admin_' %}<th>Actions</th>{% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for subject in subjects %}
+                <tr>
+                    <td>
+                        <a href="{{ path('subject_show', {slug: subject.slug}) }}">{{ subject.name }}</a>
+                    </td>
+                    <td>
+                        {{ subject.test|length }}
+                    </td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <td>
+                            <a href="{{ path('admin_subject_edit', {slug: subject.slug}) }}" class="btn btn-light">Edit</a>
+                            <a href="#" class="btn btn-danger delete-subject" data-id="{{ subject.slug }}">Delete</a>
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No subjects to display</p>
+    {% endif %}
+{% endblock %}
+{% block javascripts %}
+    <script src="/js/main.js"></script>
+{% endblock %}
