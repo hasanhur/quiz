@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=OptionRepository::class)
+ * @ORM\Table(name="option_table")
  */
 class Option
 {
@@ -25,7 +26,7 @@ class Option
     private $body;
 
     /**
-     * @ORM\Column(type="string", length=1)
+     * @ORM\Column(type="string", length=255)
      */
     private $name;
 
