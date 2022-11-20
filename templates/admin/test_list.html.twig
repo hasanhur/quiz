@@ -24,7 +24,7 @@
                 <td><a href="{{ path('test_show', {slug: test.slug}) }}" class="btn btn-dark">Show</a>
                 <a href="{{ path('admin_test_edit', {slug: test.slug}) }}" class="btn btn-light">Edit</a>
                 <a href="{{ path('admin_question_add', {slug: test.slug}) }}" class="btn btn-info">Add Question</a>
-                <a href="#" class="btn btn-danger delete-test" data-id="{{ test.id }}">Delete</a>
+                <a href="#" class="btn btn-danger delete-test" data-id="{{ test.slug }}">Delete</a>
                 </td>
             </tr>
         {% endfor %}
