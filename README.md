@@ -1,5 +1,8 @@
 # Live Application
-https://www.hasanhur.com
+https://www.hasanhur.com <br><br>
+Demo account credentials <br>
+Username: demouser<br>
+Password: demouser<br>
 
 # Stack
 PHP, MySQL, Symfony, Doctrine, PHPUnit, Twig
